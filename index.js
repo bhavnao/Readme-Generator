@@ -7,51 +7,62 @@ const generateMarkdown = require('./utils/generateMarkdown');
 const questions = [{
     type: "input",
     message: "What is the title of the project?",
-    name: "Title"
+    name: "title"
 },{
     type: "input",
         message: "What is your Github username?",
-        name: "Github"
+        name: "github"
 },{
     type: "input",
         message: "What is your email address?",
-        name: "Email"
+        name: "email"
 },{
     type: "input",
     message: "What is the description of the project?",
-    name: "Description"
+    name: "description"
 }, {
     type: "input",
         message: "Table of Contents",
-        name: "Table of Contents"
+        name: "contents"
 },{
     type: "input",
         message: "What is the User Story?",
-        name: "User"
+        name: "user-story"
 },{ 
     type: "input",
         message: "What are the installation instructions?",
-        name: "Installation"
+        name: "installation"
 },{
     type: "input",
         message: "Are there any other contributors for this project?",
-        name: "Contributors"
+        name: "contributors"
 },{
     type: "input",
         message: "What command should be run for testing?",
-        name: "Testing"
+        name: "test"
 },{
-    type: "input",
-        message: "What liscenses should your project have?",
+    type: "list",
+        message: "What licenses should your project have?",
         choices: ['MIT', 'GPL', 'APACHE', 'None'], 
-        name: "License"
+        name: "license"
 }];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+     
+ return fs.writeFile(`./output/${fileName}`, data, (err)=>
+  err ? console.log(err) : console.log('Success!'));
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquirer.prompt(questions)
+            .then((answers)=> {
+                console.log('Generating README..');
+                writeToFile('README.md',generateMarkdown(answers));
+                
+            })
+}
 
 // Function call to initialize app
 init();
