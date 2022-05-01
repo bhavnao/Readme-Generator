@@ -46,6 +46,7 @@ THEN I am taken to the corresponding section of the README
 
 
 ## Screenshots
+![Readme Geerator](./images/Screenshot-1.png)
 
 
 ## Github profile
